@@ -1,8 +1,62 @@
 body {
-  padding: 50px;
+  padding: 0 50px 0 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav.navbar {
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width:80%
+}
+
+h1{
+  margin-top: 70px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-box {
+  max-width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-box a {
+  text-decoration: none;
+  color: #333;
+}
+
+.preview-box a:hover {
+  color: #555;
+}
+
+.preview-box img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.preview-box p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.preview-box strong {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  text-decoration: underline;
 }
