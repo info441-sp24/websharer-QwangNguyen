@@ -7,3 +7,4 @@ when the user mouses over the box. I think this is an improvement because the bo
 the box's new colors and layout I think are more appealing. Also having the hover effect allows the user to know when they can click
 the box.
 
+I worked on this code completely alone and received no help.
