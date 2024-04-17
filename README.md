@@ -10,3 +10,10 @@ the box's new colors and layout I think are more appealing. Also having the hove
 the box.
 
 I worked on this code completely alone and received no help.
+
+A3:
+The url is: https://websharer-qwangnguyen-1.onrender.com/
+
+The additional piece of information added for users to post is the category their website falls under.
+
+I did this assignment on my own.
