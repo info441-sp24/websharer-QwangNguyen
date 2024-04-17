@@ -1,19 +1,40 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
-}
-
-#posts_box{
+#posts_box {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow boxes to wrap to the next row */
 }
 
-.post{
-  width:300px;
-  margin:5px;
+.post {
+  width: calc(20% - 10px); /* 20% width for each box with margin between them */
+  margin: 5px;
   border: solid 1px;
+}
+
+.preview-box {
+  height: 500px; /* Set a fixed height for all preview boxes */
+  width: 100%; /* Ensure each box takes up the full width */
+  box-sizing: border-box; /* Include padding and border in the box's total width and height */
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Make sure the container fills the height of the preview box */
+}
+
+.preview-title {
+  margin: 0;
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.preview-description {
+  margin: 5px 0;
+}
+
+.preview-site {
+  margin: 0;
+  font-style: italic;
 }

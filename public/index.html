@@ -22,6 +22,15 @@
   <h2>Post new website:</h2>
   <p>Enter a description of your post (e.g., your reason for sharing)</p>
   <input type="text" id="descriptionInput"/>
+  <br/>
+  <label for="category">Choose a category for your post:</label>
+  <br/>
+  <select name="category" id="category">
+    <option value="Memes">Memes</option>
+    <option value="News">News</option>
+    <option value="Music">Music</option>
+    <option value="Other" selected>Other</option>
+  </select>
   <p>Enter the website url</p><input type="text" id="urlInput" />
   <button onclick="postUrl()">Post</button> <span id="postStatus"></span>
   <div id="url_previews"></div>

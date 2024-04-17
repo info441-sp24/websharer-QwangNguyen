@@ -11,7 +11,7 @@ async function loadPosts(){
     let postsJson = await fetchJSON(`api/${apiVersion}/posts`)
     
     let postsHtml = postsJson.map(postInfo => {
-        return `<div class="post">${postInfo.description}${postInfo.htmlPreview}</div>`
+        return `<div class="post">${postInfo.description}<br/>Category: ${postInfo.category}${postInfo.htmlPreview}</div>`
     }).join("\n");
     document.getElementById("posts_box").innerHTML = postsHtml;
 }
@@ -19,18 +19,20 @@ async function loadPosts(){
 async function postUrl(){
     document.getElementById("postStatus").innerHTML = "sending data..."
     let url = document.getElementById("urlInput").value;
+    let category = document.getElementById("category").value;
     let description = document.getElementById("descriptionInput").value;
 
     try{
         await fetchJSON(`api/${apiVersion}/posts`, {
             method: "POST",
-            body: {url: url, description: description}
+            body: {url: url, category: category, description: description}
         })
     }catch(error){
         document.getElementById("postStatus").innerText = "Error"
         throw(error)
     }
     document.getElementById("urlInput").value = "";
+    document.getElementById("category").value = "other";
     document.getElementById("descriptionInput").value = "";
     document.getElementById("url_previews").innerHTML = "";
     document.getElementById("postStatus").innerHTML = "successfully uploaded"

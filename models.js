@@ -10,6 +10,7 @@ console.log("successfully connected to mongodb")
 
 const postSchema = new mongoose.Schema({
     url: String,
+    category: String,
     description: String,
     created_date: String
 })

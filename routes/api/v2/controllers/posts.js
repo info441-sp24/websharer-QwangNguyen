@@ -6,10 +6,11 @@ var router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-      const { url, description } = req.body;
+      const { url, category, description } = req.body;
 
       const post = new req.models.Post({
           url,
+          category,
           description,
           created_date: new Date().toISOString()
       });
@@ -33,7 +34,7 @@ router.get('/', async (req, res) => {
           // Generate HTML preview using the getURLPreview function
           const htmlPreview = await getURLPreview(post.url);
           // Return information about the post
-          return { description: post.description, htmlPreview };
+          return { description: post.description, category: post.category, htmlPreview };
         } catch (error) {
           // If generating the HTML preview has an error, put the error text in the htmlPreview field
           return { description: post.description, htmlPreview: 'Error generating HTML preview: ' + error.message };
