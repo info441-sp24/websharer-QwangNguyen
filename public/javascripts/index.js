@@ -72,7 +72,7 @@ async function previewUrl(){
                 let response = await fetch(`api/${apiVersion}/urls/preview?url=` + url)
                 let previewHtml = await response.text()
                 if(url == lastURLPreviewed){
-                    document.getElementById("url_previews").innerHTML = previewHtml;
+                    document.getElementById("url_previews").innerHTML = escapeHTML(previewHtml);
                 }
             }catch(error){
                 document.getElementById("url_previews").innerHTML = "There was an error: " + error;
@@ -81,3 +81,11 @@ async function previewUrl(){
     }
 }
 
+const escapeHTML = str => String(str).replace(/[&<>'"]/g, 
+    tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+    }[tag]));
