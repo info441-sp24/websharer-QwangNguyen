@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/92aa9463-82ff-4d04-b7b3-e95ceabafe2f/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/a3-websharer-xquang",
+  "appService.deploySubpath": "."
+}
