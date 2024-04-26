@@ -11,9 +11,9 @@ async function loadPosts(){
     let postsJson = await fetchJSON(`api/${apiVersion}/posts`)
     
     let postsHtml = postsJson.map(postInfo => {
-        return `<div class="post">${postInfo.description}<br/>Category: ${postInfo.category}${postInfo.htmlPreview}</div>`
+        return `<div class="post">${postInfo.description}<br/>Category: ${postInfo.category}${escapeHTML(postInfo.htmlPreview)}</div>`
     }).join("\n");
-    document.getElementById("posts_box").innerHTML = escapeHTML(postsHtml);
+    document.getElementById("posts_box").innerHTML = postsHtml;
 }
 
 async function postUrl(){
@@ -81,11 +81,13 @@ async function previewUrl(){
     }
 }
 
-const escapeHTML = str => String(str).replace(/[&<>'"]/g, 
-    tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-    }[tag]));
+// const escapeHTML = str => String(str).replace(/[&<>'"]/g, 
+//     tag => ({
+//         '&': '&amp;',
+//         '<': '&lt;',
+//         '>': '&gt;',
+//         "'": '&#39;',
+//         '"': '&quot;'
+//     }[tag]));
+
+const escapeHTML = str => str.replace(/onerror/gi, '');
