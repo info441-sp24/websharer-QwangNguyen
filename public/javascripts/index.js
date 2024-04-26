@@ -13,7 +13,7 @@ async function loadPosts(){
     let postsHtml = postsJson.map(postInfo => {
         return `<div class="post">${postInfo.description}<br/>Category: ${postInfo.category}${postInfo.htmlPreview}</div>`
     }).join("\n");
-    document.getElementById("posts_box").innerHTML = postsHtml;
+    document.getElementById("posts_box").innerHTML = escapeHTML(postsHtml);
 }
 
 async function postUrl(){
