@@ -21,7 +21,6 @@ router.post('/', async (req, res) => {
         error: "not logged in"
       });
     }
-
     const { newComment, postID } = req.body;
 
     const comment = new req.models.Comment({

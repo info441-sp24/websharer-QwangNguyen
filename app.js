@@ -14,7 +14,8 @@ const authConfig = {
 		clientId: "0aae3027-ca59-4652-891e-b726f161d046",
         authority: "https://login.microsoftonline.com/f6b6dd5b-f02f-441a-99a0-162ac5060bd2",
         clientSecret: "oHh8Q~R1E.tm9vezOI7672wCo.YIw.ypBNUsfdaR",
-        redirectUri: "https://websharer-a5.quangissocool.me/redirect"
+        // redirectUri: "https://a6-websharer.quangissocool.me/redirect"
+        redirectUri: "/redirect"
 	},
 
 	system: {

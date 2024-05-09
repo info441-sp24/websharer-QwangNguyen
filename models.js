@@ -23,10 +23,7 @@ console.log("mongoose model post created")
 const commentSchema = new mongoose.Schema({
     username: String,
     comment: String,
-    post: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
-    },
+    post: String,
     created_date: Date
 })
 

@@ -9,7 +9,6 @@ router.post('/', async (req, res) => {
     const { url, description, likes } = req.body;
 
     const post = new req.models.Post({
-        id: req.body.id,
         url,
         description,
         username: req.session.account.username,
@@ -27,33 +26,26 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    let query = {}; // Default query
+    let query = {};
 
     if (req.query.username) {
-      // If the username query parameter is provided, filter posts by username
       query.username = req.query.username;
     }
 
     const posts = await req.models.Post.find(query);
 
-    // Generate HTML previews for each URL
     let postData = await Promise.all(
       posts.map(async post => {
         try {
-          // Generate HTML preview using the getURLPreview function
           const htmlPreview = await getURLPreview(post.url);
-          // Return information about the post
-          return { description: post.description, username: post.username, htmlPreview };
+          return { description: post.description, username: post.username, htmlPreview, id: post._id, likes: post.likes, url: post.url, created_date: post.created_date };
         } catch (error) {
-          // If generating the HTML preview has an error, put the error text in the htmlPreview field
           return { description: post.description, htmlPreview: 'Error generating HTML preview: ' + error.message };
         }
       })
     );
-
     res.json(postData);
   } catch (error) {
-    // If there was an error, log it, then return JSON with status set to "error"
     console.log(error);
     res.status(500).json({ "status": "error", "error": error.message });
   }
