@@ -74,3 +74,17 @@ a {
   margin: 0;
   font-style: italic;
 } 
+
+.heart_button{
+  color:red;
+}
+
+.comments-box{
+  border: 1px black solid;
+  margin: 10px;
+}
+
+.individual-comment-box{
+  border: 1px black solid;
+  margin: 3px;
+}
