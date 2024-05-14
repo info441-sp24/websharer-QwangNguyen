@@ -6,6 +6,15 @@ async function init(){
 async function saveUserInfo(){
     //TODO: do an ajax call to save whatever info you want about the user from the user table
     //see postComment() in the index.js file as an example of how to do this
+
+    let newComment = document.getElementById(`new-comment-${postID}`).value;
+
+    let responseJson = await fetchJSON(`api/${apiVersion}/userData`, {
+        method: "POST",
+        body: {postID: postID, newComment: newComment}
+    })
+    
+    refreshComments(postID);
 }
 
 async function loadUserInfo(){
@@ -23,6 +32,14 @@ async function loadUserInfo(){
     //TODO: do an ajax call to load whatever info you want about the user from the user table
 
     loadUserInfoPosts(username)
+}
+
+async function refreshUser(postID){
+    let commentsElement = document.getElementById(`comments-${postID}`);
+    commentsElement.innerHTML = "loading..."
+
+    let commentsJSON = await fetchJSON(`api/${apiVersion}/comments?postID=${postID}`)
+    commentsElement.innerHTML = getCommentHTML(commentsJSON);
 }
 
 

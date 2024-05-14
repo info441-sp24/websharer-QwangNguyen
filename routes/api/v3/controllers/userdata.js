@@ -4,17 +4,17 @@ var router = express.Router();
 
 router.post('/', async (req, res) => {
   try {
-    const { url, description, likes } = req.body;
+    const { song, age, bio, animal } = req.body;
 
-    const post = new req.models.Post({
-        url,
-        description,
-        username: req.session.account.username,
-        likes,
-        created_date: new Date().toISOString()
+    const userData = new req.models.User({
+      username: req.session.account.username,
+      song,
+      age,
+      bio,
+      animal
     });
 
-    await post.save();
+    await userData.save();
     res.json({ "status": "success" });
   } catch (error) {
     console.log(error);
@@ -24,25 +24,19 @@ router.post('/', async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    let query = {};
+    let username = req.session.account.username;
+    const users = await req.models.User.find(username);
 
-    if (req.query.username) {
-      query.username = req.query.username;
-    }
-
-    const posts = await req.models.Post.find(query);
-
-    let postData = await Promise.all(
-      posts.map(async post => {
+    let userData= await Promise.all(
+      users.map(async user => {
         try {
-          const htmlPreview = await getURLPreview(post.url);
-          return { description: post.description, username: post.username, htmlPreview, id: post._id, likes: post.likes, url: post.url, created_date: post.created_date };
+          return { username: user.username, song: user.song, age: user.age, bio: user.bio, animal: user.animal };
         } catch (error) {
-          return { description: post.description, htmlPreview: 'Error generating HTML preview: ' + error.message };
+          return { error: 'Error generating HTML preview: ' + error.message };
         }
       })
     );
-    res.json(postData);
+    res.json(userData);
   } catch (error) {
     console.log(error);
     res.status(500).json({ "status": "error", "error": error.message });
