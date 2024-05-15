@@ -26,3 +26,6 @@ https://websharer-a5.quangissocool.me/
 
 A6:
 https://a6-websharer.quangissocool.me/
+
+A7:
+https://a7-websharer.quangissocool.me/
