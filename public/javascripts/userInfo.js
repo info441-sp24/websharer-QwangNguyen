@@ -4,17 +4,21 @@ async function init(){
 }
 
 async function saveUserInfo(){
-    //TODO: do an ajax call to save whatever info you want about the user from the user table
-    //see postComment() in the index.js file as an example of how to do this
+    try {
+        let song = document.getElementById("song-input").value;
+        let age = document.getElementById("age-input").value;
+        let bio = document.getElementById("bio-input").value;
+        let animal = document.getElementById("animal-input").value;
 
-    let newComment = document.getElementById(`new-comment-${postID}`).value;
+        let responseJson = await fetchJSON(`api/${apiVersion}/userData`, {
+            method: "POST",
+            body: {song: song, age: age, bio: bio, animal: animal}
+        })
 
-    let responseJson = await fetchJSON(`api/${apiVersion}/userData`, {
-        method: "POST",
-        body: {postID: postID, newComment: newComment}
-    })
-    
-    refreshComments(postID);
+        window.location.reload();
+    } catch(error) {
+        console.error("Error updating user info:", error);
+    }
 }
 
 async function loadUserInfo(){
@@ -28,20 +32,19 @@ async function loadUserInfo(){
         document.getElementById("username-span").innerText=username;
         document.getElementById("user_info_new_div").classList.add("d-none");
     }
-    
-    //TODO: do an ajax call to load whatever info you want about the user from the user table
 
+    try {
+        const response = await fetch(`/api/${apiVersion}/userData?username=${username}`);
+        const userData = await response.json();
+        document.getElementById("song-display").innerText = userData[0].song;
+        document.getElementById("age-display").innerText = userData[0].age;
+        document.getElementById("bio-display").innerText = userData[0].bio;
+        document.getElementById("animal-display").innerText = userData[0].animal;
+    } catch(error) {
+        console.error("Error loading user information:", error);
+    }
     loadUserInfoPosts(username)
 }
-
-async function refreshUser(postID){
-    let commentsElement = document.getElementById(`comments-${postID}`);
-    commentsElement.innerHTML = "loading..."
-
-    let commentsJSON = await fetchJSON(`api/${apiVersion}/comments?postID=${postID}`)
-    commentsElement.innerHTML = getCommentHTML(commentsJSON);
-}
-
 
 async function loadUserInfoPosts(username){
     document.getElementById("posts_box").innerText = "Loading...";

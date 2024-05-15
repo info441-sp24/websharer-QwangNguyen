@@ -28,6 +28,8 @@ const commentSchema = new mongoose.Schema({
 
 models.Comment = mongoose.model('Comment', commentSchema)
 
+console.log("mongoose model comment created")
+
 const userSchema = new mongoose.Schema({
     username: String,
     song: String,

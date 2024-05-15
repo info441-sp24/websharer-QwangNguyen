@@ -20,13 +20,28 @@
   
   <h2>Info for user: <span id="username-span"></span></h2>
   <div id="user_info_div">
-    TODO: For A7, show user info here (loadUserInfo function in userInfo.js)
+    <h3>User Info:</h3>
+    <ul>
+      <li><strong>Song:</strong> <span id="song-display"></span></li>
+      <li><strong>Age:</strong> <span id="age-display"></span></li>
+      <li><strong>Bio:</strong> <span id="bio-display"></span></li>
+      <li><strong>Animal:</strong> <span id="animal-display"></span></li>
+    </ul>
   </div>
   <br>
   <div id="user_info_new_div" class="d-none">
     <h3>Update User Info:</h3>
-    TODO: For A7, add input fields here here (saveUserInfo function in userInfo.js)
-    <br>
+    <label for="song">Song:</label>
+    <input type="text" id="song-input" name="song" placeholder="Enter your favorite song"><br><br>
+    
+    <label for="age">Age:</label>
+    <input type="text" id="age-input" name="age" placeholder="Enter your age"><br><br>
+    
+    <label for="bio">Bio:</label>
+    <textarea id="bio-input" name="bio" placeholder="Enter your bio"></textarea><br><br>
+    
+    <label for="animal">Animal:</label>
+    <input type="text" id="animal-input" name="animal" placeholder="Enter your favorite animal"><br><br>
     <button onclick="saveUserInfo()">Save User Info</button>
   </div>
   <br><br>
